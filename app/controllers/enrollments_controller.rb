@@ -12,7 +12,7 @@ class EnrollmentsController < ApplicationController
 
     matching_enrollments = Enrollment.where({ :id => the_id })
 
-    @the_enrollment = matching_enrollments.at(0)
+    @enrollment = matching_enrollments.at(0)
 
     render({ :template => "enrollments/show.html.erb" })
   end
