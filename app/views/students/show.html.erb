@@ -47,8 +47,8 @@
 
 <hr>
 
-<h3>Course Load</h3>
-<ul>
+<h3>Course Load</h3> <!-- Testing a different way to do this -->
+<!-- <ul>
   <% enrollments = Enrollment.where({:student_id => @the_student.id }) %>
   <% enrollments.each do |enrollment| %>
     <li>
@@ -58,4 +58,20 @@
       </a>
     </li>
   <% end %>
+</ul> -->
+
+<%enrollments = Enrollment.where({ :student_id => @the_student.id})%>
+<%courseid_array = enrollments.map_relation_to_array(:course_id)%>
+
+<ul>
+  <%courses = Course.where({ :id => courseid_array})%>
+
+  <%courses.each do |course|%>
+    <li>
+      <a href = "/courses/<%=course.id%>">
+        <%=course.title%>
+      </a>
+    </li>
+  <%end%>
+
 </ul>
